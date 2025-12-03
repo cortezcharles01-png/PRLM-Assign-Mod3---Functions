@@ -31,8 +31,8 @@ function get_tax_due(float $price, int $qty, int $tax_rate = 0): float {
     $totalValue = $price * $qty;
     return $totalValue * ($tax_rate / 100);
 }
-
 ?>
+
 <h1 style="text-align:center; margin-top:20px;">Store Stock Monitor</h1>
 
 <table>
@@ -43,3 +43,18 @@ function get_tax_due(float $price, int $qty, int $tax_rate = 0): float {
         <th>Total Value (₱)</th>
         <th>Tax Due (₱)</th>
     </tr>
+
+    <?php foreach ($products as $product_name => $data): ?>
+        <tr>
+            <td><?= $product_name ?></td>
+            <td><?= $data["stock"] ?></td>
+            <td><?= get_reorder_message($data["stock"]) ?></td>
+            <td><?= number_format(get_total_value($data["price"], $data["stock"]), 2) ?></td>
+            <td><?= number_format(get_tax_due($data["price"], $data["stock"], $tax_rate), 2) ?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
+<?php
+include "Cortez_Charlesfooter.php";
+?>
