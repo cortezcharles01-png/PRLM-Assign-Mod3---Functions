@@ -31,4 +31,15 @@ function get_tax_due(float $price, int $qty, int $tax_rate = 0): float {
     $totalValue = $price * $qty;
     return $totalValue * ($tax_rate / 100);
 }
+
 ?>
+<h1 style="text-align:center; margin-top:20px;">Store Stock Monitor</h1>
+
+<table>
+    <tr>
+        <th>Product Name</th>
+        <th>Stock</th>
+        <th>Reorder?</th>
+        <th>Total Value (₱)</th>
+        <th>Tax Due (₱)</th>
+    </tr>
